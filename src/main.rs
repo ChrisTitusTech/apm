@@ -48,7 +48,8 @@ impl APMTracker {
 
     fn should_quit(&self) -> bool {
         let keys = self.device_state.get_keys();
-        keys.contains(&Keycode::LControl) && keys.contains(&Keycode::Q)
+        (keys.contains(&Keycode::LControl) && keys.contains(&Keycode::Q)) ||
+        (keys.contains(&Keycode::LAlt) && keys.contains(&Keycode::F4))
     }
 }
 
@@ -84,7 +85,9 @@ fn main() -> Result<(), eframe::Error> {
             .with_inner_size([100.0, 50.0])
             .with_decorations(false)
             .with_transparent(true)
-            .with_always_on_top(),
+            .with_always_on_top()
+            .with_window_level(egui::WindowLevel::AlwaysOnTop)
+            .with_app_id("apm_tracker"),
         ..Default::default()
     };
 
