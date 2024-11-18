@@ -68,10 +68,15 @@ impl eframe::App for APMTracker {
             .frame(egui::Frame::none())
             .title_bar(false)
             .show(ctx, |ui| {
-                ui.label(
+                let response = ui.label(
                     egui::RichText::new(format!("APM: {:.0}", self.current_apm))
                         .size(24.0)
                 );
+
+                // Add drag functionality when holding shift
+                if response.interact(egui::Sense::click()).clicked() && ui.input(|i| i.modifiers.shift) {
+                    ui.ctx().send_viewport_cmd(egui::ViewportCommand::StartDrag);
+                }
             });
 
         // Request continuous updates

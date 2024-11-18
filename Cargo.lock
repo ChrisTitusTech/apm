@@ -146,6 +146,7 @@ version = "0.1.0"
 dependencies = [
  "device_query",
  "eframe",
+ "winapi",
 ]
 
 [[package]]
