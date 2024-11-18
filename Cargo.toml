@@ -1,0 +1,8 @@
+[package]
+name = "apm_tracker"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.24.1"
+device_query = "1.1.3"
